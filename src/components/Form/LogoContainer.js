@@ -7,9 +7,11 @@ const LogoContainer = styled.header`
   justify-content: center;
   align-items: center;
   color: #fff;
-  background-color: #1C285C;
+  background-color: #005AA3;
   img {
-      cursor: pointer;
+    width:200px;
+    height:100px
+    cursor: pointer;
   }
 `;
 

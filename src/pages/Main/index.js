@@ -54,15 +54,23 @@ export default function Main(){
               <Department>
                 <DepHeader>SAÚDE E HIGIENE</DepHeader>
                 <ItemsContainer>
-                    teste produto 1 higiene
+                    teste produto 1 GAMES
                     {/*FIXME: PRODUTOS AQUI*/}                  
                 </ItemsContainer>
                 
               </Department>
               <Department>
-                <DepHeader>GAMES</DepHeader>
+                <DepHeader>SAÚDE E HIGIENE</DepHeader>
                 <ItemsContainer>
-                    teste produto 2 games
+                    teste produto 2 SAUDE E HIGIENE
+                    {/*FIXME: PRODUTOS AQUI*/} 
+                </ItemsContainer>
+              </Department>
+
+              <Department>
+                <DepHeader>ELETRODOMÉSTICOS</DepHeader>
+                <ItemsContainer>
+                    teste produto 3 ELETRODOMÉSTICOS
                     {/*FIXME: PRODUTOS AQUI*/} 
                 </ItemsContainer>
               </Department>

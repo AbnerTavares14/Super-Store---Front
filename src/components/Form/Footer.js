@@ -6,7 +6,7 @@ const Footer = styled.footer`
     position: absolute;
     bottom: 0;
     
-    background-color: #1C285C;
+    background-color: #005AA3;
 `;
 
 export default Footer;
