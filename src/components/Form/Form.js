@@ -6,7 +6,7 @@ const Form = styled.form`
   align-items: center;
   justify-content: center;
   margin: 20px 0 25px;
-  font-family: "Raleway", sans-serif;
+  font-family: "Lexend Deca", sans-serif;
 `;
 
 export default Form;
