@@ -10,7 +10,7 @@ const LogoContainer = styled.header`
   background-color: #005AA3;
   img {
     width:200px;
-    height:100px
+    height:100px;
     cursor: pointer;
   }
 `;
