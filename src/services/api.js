@@ -30,7 +30,7 @@ function postAddToCart(body, token) {
 
 
 const api = {
-    postSignUp,
+    postSignIn,
     postSignUp,
     getSingleProduct,
     postAddToCart
