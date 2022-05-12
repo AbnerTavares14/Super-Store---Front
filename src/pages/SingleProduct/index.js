@@ -20,7 +20,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { ThreeDots } from "react-loader-spinner";
 import Footer from "../../components/Footer";
-import CartContext from "../../context/CartContext"
+import CartContext from "../../context/cartContext"
 
 export default function SingleProduct() {
   const [product, setProduct] = useState({});
@@ -50,7 +50,7 @@ export default function SingleProduct() {
   }, []);
 
   function addToCart() {
-      //verificação p caso o carrinho esteja vazio
+    //verificação p caso o carrinho esteja vazio
     if (itemQuantity === 0) {
       Swal.fire({
         icon: "error",
@@ -66,7 +66,7 @@ export default function SingleProduct() {
     //postando na api os itens que serao adicionados no carrinho
     setIsLoading(true);
     api
-      .postAddToCart({...product, quantity: itemQuantity}, {
+      .postAddToCart({ ...product, quantity: itemQuantity }, {
         headers: { Authorization: `Bearer ${auth.token}` },
       })
       .then(() => {

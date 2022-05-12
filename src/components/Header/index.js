@@ -10,9 +10,12 @@ import {
   UpperBar,
   UserEnvironment,
   TotalItensCart,
-  DepartmentLink,}
-from "./style";
-import Button from "../Form/Button"
+
+  DepartmentLink,
+}
+  from "./style";
+
+import Button from "@mui/material/Button";
 
 import Logo from "../../assets/img/Logo.png"
 import CartContext from "../../context/CartContext";
