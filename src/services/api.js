@@ -2,7 +2,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
 
-const BASE_URL = "https://projeto--super-store.herokuapp.com";//api_heroku aqui vai ser colocada a api do heroku
+const BASE_URL = process.env.HEROKU_API;
 
 function postSignIn(body) {
     const promise = axios.post(`${BASE_URL}/sign-in`, body);
@@ -30,6 +30,7 @@ function postAddToCart(body, token) {
 
 
 const api = {
+    postSignIn,
     postSignUp,
     getSingleProduct,
     postAddToCart,
@@ -37,4 +38,3 @@ const api = {
 };
 
 export default api;
-
