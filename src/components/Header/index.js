@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Input,
@@ -12,23 +12,27 @@ import {
   TotalItensCart,
   DepartmentLink,}
 from "./style";
-
-import Button from "@mui/material/Button";
+import Button from "../Form/Button"
 
 import Logo from "../../assets/img/Logo.png"
-
+import CartContext from "../../context/CartContext";
+import useAuth from "../../hooks/useAuth";
 
 
 export default function Header() {
-    const [isLoading, setIsLoading] = useState(false);
-    const navigate = useNavigate();
-    const [search, setSearch] = useState({text: "",});
+  const { cartQuantity } = useContext(CartContext);
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const [search, setSearch] = useState({
+    text: "",
+  });
 
-    function handleSearch() {
-        navigate("/search");
-      }
+  const { auth, setAuth } = useAuth();
+
+  function handleSearch() {
+    navigate("/search");
+  }
     
-
     return (
         <Container>
           <UpperBar>
@@ -56,15 +60,18 @@ export default function Header() {
               </form>
             </SearchBar>
             <UserEnvironment>
-                {/* TODO: caso o usuário estiver logado, aparecer infos dele, como nome e tals */}
-                <Button onClick={() => navigate("/login")} variant="contained">
-                  Entrar
-                </Button>
+            {auth?.name ? (
+            `Olá, ${auth.name}`
+          ) : (
+            <Button onClick={() => navigate("/login")} variant="contained">
+              Entrar
+            </Button>
+          )}
             </UserEnvironment>
             <Cart to="/cart">
-              <div><ion-icon name="cart-outline"></ion-icon></div>
-              {/* TODO: mostrar a quantidade de itens que tem no carrinho */}
-            </Cart>
+          <div><ion-icon name="cart-outline"></ion-icon></div>
+          <TotalItensCart>{cartQuantity}</TotalItensCart>
+        </Cart>
           </UpperBar>
           <LowerBar>
             <DepartmentLink to="/games">GAMES</DepartmentLink>
