@@ -12,7 +12,7 @@ import styled from "styled-components";
 import useAuth from "../../hooks/useAuth";
 import Logo from "../../assets/img/Logo.png";
 import api from "../../services/api";
-import CartContext from "../../context/cartContext.js";
+import CartContext from "../../context/CartContext.js";
 import {
     Info,
     ContainerCart,
