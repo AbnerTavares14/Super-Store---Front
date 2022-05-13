@@ -47,7 +47,7 @@ export default function SingleProduct() {
           setNotFound(true);
         }
       });
-  }, []);
+  }, [productId]);
 
   function addToCart() {
     //verificação p caso o carrinho esteja vazio

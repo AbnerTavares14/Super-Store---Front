@@ -41,7 +41,6 @@ export default function Login() {
     const promise = api.postSignIn({ ...loginData });
     promise
       .then((response) => {
-        console.log(response.data);
         setIsLoading(false);
 
         login(response.data);
