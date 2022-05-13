@@ -13,6 +13,7 @@ import useAuth from "../../hooks/useAuth";
 import Logo from "../../assets/img/Logo.png";
 import api from "../../services/api";
 import CartContext from "../../context/CartContext.js";
+import Button from "../../components/Form/Button.js";
 import {
     Info,
     ContainerCart,
