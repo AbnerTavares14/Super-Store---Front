@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { GlobalStyle } from "./styles/style";
 import { MainPage, Login, SignUp, SingleProduct, Cart } from "./pages";
-import AuthContext from "./context/AuthContext";
-import CartContext from "./context/CartContext";
+import AuthContext from "./context/authContext";
+import CartContext from "./context/cartContext";
 import Games from "./pages/Categorys/Games";
 import Health from "./pages/Categorys/Health";
 import Eletro from "./pages/Categorys/Eletro";
@@ -38,8 +38,8 @@ export default function App() {
                             <Route path="/home" element={<Home />} />
                         </Routes>
                     </AuthContext.Provider>
-            </CartContext.Provider>
-        </BrowserRouter>
+                </CartContext.Provider>
+            </BrowserRouter>
         </>
     )
 }
