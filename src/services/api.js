@@ -5,27 +5,27 @@ dotenv.config();
 const BASE_URL = "https://projeto--super-store.herokuapp.com"
 
 function postSignIn(body) {
-    const promise = axios.post(`${BASE_URL}/sign-in`, body);
+  const promise = axios.post(`${BASE_URL}/sign-in`, body);
 
-    return promise;
+  return promise;
 };
 
 function postSignUp(body) {
-    const promise = axios.post(`${BASE_URL}/sign-up`, body);
+  const promise = axios.post(`${BASE_URL}/sign-up`, body);
 
-    return promise;
+  return promise;
 };
 
 function getSingleProduct(productId) {
-    const promise = axios.get(`${BASE_URL}/products/${productId}`);
+  const promise = axios.get(`${BASE_URL}/products/${productId}`);
 
-    return promise;
+  return promise;
 };
 
 function postAddToCart(body, token) {
-    const promise = axios.post(`${BASE_URL}/add-to-cart`, body, token);
+  const promise = axios.post(`${BASE_URL}/add-to-cart`, body, token);
 
-    return promise;
+  return promise;
 }
 
 function getGames() {
@@ -35,54 +35,61 @@ function getGames() {
 }
 
 function getHealth() {
-    const promise = axios.get(`${BASE_URL}/health`);
-  
-    return promise;
-  }
-  
-  function getEletro() {
-    const promise = axios.get(`${BASE_URL}/eletro`);
-  
-    return promise;
-  }
+  const promise = axios.get(`${BASE_URL}/health`);
 
-  function getAccessories() {
-    const promise = axios.get(`${BASE_URL}/accessories`);
-  
-    return promise;
-  }
-  
-  function getBooks() {
-    const promise = axios.get(`${BASE_URL}/books`);
-  
-    return promise;
-  }
-  
-  function getFashion() {
-    const promise = axios.get(`${BASE_URL}/fashion`);
-  
-    return promise;
-  }
-  
-  function getHome() {
-    const promise = axios.get(`${BASE_URL}/home`);
-  
-    return promise;
-  }
-  
+  return promise;
+}
+
+function getEletro() {
+  const promise = axios.get(`${BASE_URL}/eletro`);
+
+  return promise;
+}
+
+function getAccessories() {
+  const promise = axios.get(`${BASE_URL}/accessories`);
+
+  return promise;
+}
+
+function getBooks() {
+  const promise = axios.get(`${BASE_URL}/books`);
+
+  return promise;
+}
+
+function getFashion() {
+  const promise = axios.get(`${BASE_URL}/fashion`);
+
+  return promise;
+}
+
+function getHome() {
+  const promise = axios.get(`${BASE_URL}/home`);
+
+  return promise;
+}
+
+function getProductOfCart(token) {
+  const promise = axios.get(`${BASE_URL}/cart`, token);
+
+  return promise;
+}
+
 
 const api = {
-    postSignIn,
-    postSignUp,
-    getSingleProduct,
-    postAddToCart,
-    getGames,
-    getHealth,
-    getEletro,
-    getAccessories,
-    getFashion,
-    getBooks,
-    getHome,
+  postSignIn,
+  postSignUp,
+  getSingleProduct,
+  postAddToCart,
+  getGames,
+  getHealth,
+  getEletro,
+  getAccessories,
+  getFashion,
+  getBooks,
+  getHome,
+  getProductOfCart
 };
 
 export default api;

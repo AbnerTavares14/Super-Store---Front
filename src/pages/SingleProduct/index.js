@@ -67,7 +67,7 @@ export default function SingleProduct() {
     setIsLoading(true);
     api
       .postAddToCart({ ...product, quantity: itemQuantity }, {
-        headers: { Authorization: `Bearer ${auth.token}` },
+        headers: { Authorization: `Bearer ${auth}` },
       })
       .then(() => {
         setIsLoading(false);
