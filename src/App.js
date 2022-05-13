@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { GlobalStyle } from "./styles/style";
-import { MainPage, Login, SignUp, SingleProduct} from "./pages";
+import { MainPage, Login, SignUp, SingleProduct, Cart } from "./pages";
 import AuthContext from "./context/AuthContext";
 import CartContext from "./context/CartContext";
 import Games from "./pages/Categorys/Games";
@@ -14,31 +14,32 @@ import Home from "./pages/Categorys/Home";
 
 
 export default function App() {
-    const [token, setToken] = useState(null);
+    const [auth, login] = useState(null);
     const [cartQuantity, setCartQuantity] = useState(0);
 
     return (
         <>
             <GlobalStyle />
             <BrowserRouter>
-            <AuthContext.Provider value={{ token, setToken }}>
-            <CartContext.Provider value={{ cartQuantity, setCartQuantity }}>
-                    <Routes>
-                        <Route path="/" element={<MainPage />} />
-                        <Route path="/login" element={<Login />} />
-                        <Route path="/sign-up" element={<SignUp />} />
-                        <Route path="/product/:productId" element={<SingleProduct />} />
-                        <Route path="/games" element={<Games />} />
-                        <Route path="/health" element={<Health />} />
-                        <Route path="/eletro" element={<Eletro />} />
-                        <Route path="/accessories" element={<Accessories />} />
-                        <Route path="/books" element={<Books />} />
-                        <Route path="/fashion" element={<Fashion />} />
-                        <Route path="/home" element={<Home />} />
-                    </Routes>
-                </CartContext.Provider>
-                </AuthContext.Provider>
-            </BrowserRouter>
+                <CartContext.Provider value={{ cartQuantity, setCartQuantity }}>
+                    <AuthContext.Provider value={{ auth, login }}>
+                        <Routes>
+                            <Route path="/" element={<MainPage />} />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/sign-up" element={<SignUp />} />
+                            <Route path="/product/:productId" element={<SingleProduct />} />
+                            <Route path="/cart" element={<Cart />} />
+                            <Route path="/games" element={<Games />} />
+                            <Route path="/health" element={<Health />} />
+                            <Route path="/eletro" element={<Eletro />} />
+                            <Route path="/accessories" element={<Accessories />} />
+                            <Route path="/books" element={<Books />} />
+                            <Route path="/fashion" element={<Fashion />} />
+                            <Route path="/home" element={<Home />} />
+                        </Routes>
+                    </AuthContext.Provider>
+            </CartContext.Provider>
+        </BrowserRouter>
         </>
     )
 }
