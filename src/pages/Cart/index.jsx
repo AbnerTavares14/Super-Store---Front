@@ -11,7 +11,7 @@ import Button from "../../components/Form/Button.js";
 
 import { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import AuthContext from "../../context/authContext";
+import AuthContext from "../../context/AuthContext";
 import styled from "styled-components";
 import Logo from "../../assets/img/Logo.png"
 import cart from "../../assets/img/carrinho.png"

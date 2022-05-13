@@ -18,7 +18,7 @@ import {
 import Button from "@mui/material/Button";
 
 import Logo from "../../assets/img/Logo.png"
-import CartContext from "../../context/cartContext";
+import CartContext from "../../context/CartContext";
 import useAuth from "../../hooks/useAuth";
 
 
