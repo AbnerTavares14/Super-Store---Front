@@ -107,7 +107,7 @@ export default function SingleProduct() {
               <ProductImage src={product.image}></ProductImage>
               <RightContainer>
                 <ProductName>{product.name}</ProductName>
-                <ProductPrice>R$ {product.price?.toFixed(2).replace(".", ",")}</ProductPrice>
+                <ProductPrice>R$ {product.price}</ProductPrice>
                 <Quantity>
                   <div
                     className="remove"

@@ -4,6 +4,13 @@ import { GlobalStyle } from "./styles/style";
 import { MainPage, Login, SignUp, SingleProduct} from "./pages";
 import AuthContext from "./context/AuthContext";
 import CartContext from "./context/CartContext";
+import Games from "./pages/Categorys/Games";
+import Health from "./pages/Categorys/Health";
+import Eletro from "./pages/Categorys/Eletro";
+import Accessories from "./pages/Categorys/Accessories";
+import Books from "./pages/Categorys/Books";
+import Fashion from "./pages/Categorys/Fashion";
+import Home from "./pages/Categorys/Home";
 
 
 export default function App() {
@@ -14,16 +21,23 @@ export default function App() {
         <>
             <GlobalStyle />
             <BrowserRouter>
+            <AuthContext.Provider value={{ token, setToken }}>
             <CartContext.Provider value={{ cartQuantity, setCartQuantity }}>
-                <AuthContext.Provider value={{ token, setToken }}>
                     <Routes>
                         <Route path="/" element={<MainPage />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/sign-up" element={<SignUp />} />
                         <Route path="/product/:productId" element={<SingleProduct />} />
+                        <Route path="/games" element={<Games />} />
+                        <Route path="/health" element={<Health />} />
+                        <Route path="/eletro" element={<Eletro />} />
+                        <Route path="/accessories" element={<Accessories />} />
+                        <Route path="/books" element={<Books />} />
+                        <Route path="/fashion" element={<Fashion />} />
+                        <Route path="/home" element={<Home />} />
                     </Routes>
-                </AuthContext.Provider>
                 </CartContext.Provider>
+                </AuthContext.Provider>
             </BrowserRouter>
         </>
     )

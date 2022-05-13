@@ -1,84 +1,134 @@
 import {
-    Container,
-    Department,
-    DepHeader,
-    FooterContainer,
-    HeaderContainer,
-    HorizontalScrollButton,
-    Items,
-    ItemsContainer,
-    SubContainer,
-  } from "./style";
-  
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
+  Container,
+  Department,
+  DepHeader,
+  FooterContainer,
+  HeaderContainer,
+  Items,
+  ItemsContainer,
+  SubContainer,
+} from "./style";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
+import { useEffect, useState } from "react";
+import api from "../../services/api";
+import { useNavigate } from "react-router-dom";
+import { ThreeDots } from "react-loader-spinner";
 
-export default function Main(){
+export default function MainPage() {
+  const [books, setBooks] = useState("");
+  const [games, setGames] = useState("");
 
-    const [health, setHealth]=useState("");
-    const [games, setGames]=useState("");
-    //Produtos que vão aparecer na tela principal
+  const [isLoading, setLoading] = useState(false);
 
-    const [isLoading, setLoading] = useState(false);
 
-    const navigate = useNavigate();
-    window.scroll(0, 0);
+  const navigate = useNavigate();
+  window.scroll(0, 0);
 
-    useEffect(() => {
-        setLoading(true);
-        handleProducts();
-      }, []);
+  useEffect(() => {
+    setLoading(true);
+    handleProducts();
+  }, []);
 
-    async function handleProducts(){
-        setLoading(true);
-    try{
-        //TODO: serão requisitados os produtos e armazenados no array;
-        setLoading(false);
+  async function handleProducts() {
+    setLoading(true);
+    try {
+      const booksPromise = await api.getBooks([]);
+      const gamesPromise = await api.getGames([]);
+
+      setBooks(booksPromise.data);
+      setGames(gamesPromise.data);
+
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
     }
-    catch{
-        setLoading(false);
-    }
-    }
+  }
 
-    return (
-        <>
-          <HeaderContainer>
-            <Header />
-          </HeaderContainer>
-          <Container>
-            <SubContainer>
-              <Department>
-                <DepHeader>SAÚDE E HIGIENE</DepHeader>
-                <ItemsContainer>
-                    teste produto 1 GAMES
-                    {/*FIXME: PRODUTOS AQUI*/}                  
-                </ItemsContainer>
-                
-              </Department>
-              <Department>
-                <DepHeader>SAÚDE E HIGIENE</DepHeader>
-                <ItemsContainer>
-                    teste produto 2 SAUDE E HIGIENE
-                    {/*FIXME: PRODUTOS AQUI*/} 
-                </ItemsContainer>
-              </Department>
-
-              <Department>
-                <DepHeader>ELETRODOMÉSTICOS</DepHeader>
-                <ItemsContainer>
-                    teste produto 3 ELETRODOMÉSTICOS
-                    {/*FIXME: PRODUTOS AQUI*/} 
-                </ItemsContainer>
-              </Department>
-            </SubContainer>
-          </Container>
-          <FooterContainer>
-            <Footer />
-          </FooterContainer>
-        </>
-      );
+  return (
+    <>
+      <HeaderContainer>
+        <Header />
+      </HeaderContainer>
+      <Container>
+        <SubContainer>
+          <Department>
+            <DepHeader>LIVROS</DepHeader>
+            <ItemsContainer
+              isLoading={isLoading}
+              className="sliderContainer"
+            >
+              {books.length === 0 && isLoading && (
+                <span>
+                  <ThreeDots color="#0377FF" height={25} width={150} />
+                </span>
+              )}
+              {books.length !== 0 &&
+                !isLoading &&
+                Array.from(books).map((book, id) => (
+                  <Items
+                    onClick={() => navigate(`/product/${book._id}`)}
+                    key={id}
+                  >
+                    <div className="image-wrapper">
+                      <img
+                        className="product-image"
+                        src={book.image}
+                        alt="ps"
+                      />
+                    </div>
+                    <div className="info-wrapper">
+                      <span className="productName">{book.name}</span>
+                      <span className="productPrice">
+                        R$ {book.price}
+                      </span>
+                    </div>
+                  </Items>
+                ))}
+            </ItemsContainer>
+          </Department>
+          <Department>
+            <DepHeader>GAMES</DepHeader>
+            <ItemsContainer
+              isLoading={isLoading}
+              className="sliderContainer"
+            >
+              {games.length === 0 && isLoading && (
+                <span>
+                  <ThreeDots color="#0377FF" height={25} width={150} />
+                </span>
+              )}
+              {games.length !== 0 &&
+                !isLoading &&
+                Array.from(games).map((game, id) => (
+                  <Items
+                    onClick={() => navigate(`/product/${game._id}`)}
+                    key={id}
+                  >
+                    <div className="image-wrapper">
+                      <img
+                        className="product-image"
+                        src={game.image}
+                        alt="ps"
+                      />
+                    </div>
+                    <div className="info-wrapper">
+                      <span className="productName">{game.name}</span>
+                      <span className="productPrice">
+                        R$ {game.price}
+                      </span>
+                    </div>
+                  </Items>
+                ))}
+            </ItemsContainer>
+          </Department>
+        </SubContainer>
+      </Container>
+      <FooterContainer>
+        <Footer />
+      </FooterContainer>
+    </>
+  );
 }

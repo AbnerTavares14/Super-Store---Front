@@ -2,7 +2,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
 
-const BASE_URL = process.env.HEROKU_API;
+const BASE_URL = "https://projeto--super-store.herokuapp.com"
 
 function postSignIn(body) {
     const promise = axios.post(`${BASE_URL}/sign-in`, body);
@@ -28,12 +28,61 @@ function postAddToCart(body, token) {
     return promise;
 }
 
+function getGames() {
+  const promise = axios.get(`${BASE_URL}/games`);
+
+  return promise;
+}
+
+function getHealth() {
+    const promise = axios.get(`${BASE_URL}/health`);
+  
+    return promise;
+  }
+  
+  function getEletro() {
+    const promise = axios.get(`${BASE_URL}/eletro`);
+  
+    return promise;
+  }
+
+  function getAccessories() {
+    const promise = axios.get(`${BASE_URL}/accessories`);
+  
+    return promise;
+  }
+  
+  function getBooks() {
+    const promise = axios.get(`${BASE_URL}/books`);
+  
+    return promise;
+  }
+  
+  function getFashion() {
+    const promise = axios.get(`${BASE_URL}/fashion`);
+  
+    return promise;
+  }
+  
+  function getHome() {
+    const promise = axios.get(`${BASE_URL}/home`);
+  
+    return promise;
+  }
+  
 
 const api = {
     postSignIn,
     postSignUp,
     getSingleProduct,
-    postAddToCart
+    postAddToCart,
+    getGames,
+    getHealth,
+    getEletro,
+    getAccessories,
+    getFashion,
+    getBooks,
+    getHome,
 };
   
 export default api;

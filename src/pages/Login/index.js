@@ -38,7 +38,7 @@ import {
       e.preventDefault();
   
       setIsLoading(true);
-      const promise = api.postLogin({ ...loginData });
+      const promise = api.postSignIn({ ...loginData });
       promise
         .then((response) => {
           setIsLoading(false);
