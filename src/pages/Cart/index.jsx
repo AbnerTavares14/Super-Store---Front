@@ -6,10 +6,7 @@ import {
     SearchLogo,
     Input
 } from "../../components/Header/style.js";
-import Button from "../../components/Form/Button.js";
-// import Container from "../../components/Form";
-
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import useAuth from "../../hooks/useAuth";
