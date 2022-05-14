@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 
-import { Container, FooterContainer, HeaderContainer, Items} from "../../Main/style";
-import { DeptHeader, InfinityBorder, ItemsContainer, SubContainer} from "../style";
+import { Container, FooterContainer, HeaderContainer, Items } from "../../Main/style";
+import { DeptHeader, InfinityBorder, ItemsContainer, SubContainer } from "../style";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import api from "../../../services/api";
@@ -24,6 +24,7 @@ export default function Accessories() {
       const accessoryPromise = await api.getAccessories([]);
 
       setAccessory(accessoryPromise.data);
+      console.log(accessoryPromise.data)
 
       setLoading(false);
     } catch (error) {
