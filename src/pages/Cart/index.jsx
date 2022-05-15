@@ -13,10 +13,11 @@ export default function Cart() {
     const [isLoading, setIsLoading] = useState(false);
     const [exist, setExist] = useState(false);
     const [search, setSearch] = useState({ text: "", });
-    const [priceTotal, setPriceTotal] = useState(0);
+    // const [priceTotal, setPriceTotal] = useState(0);
     const navigate = useNavigate();
     let tamanho = 0;
     let priceT = 0;
+    let quantity = 0;
 
     useEffect(() => {
         const config = {
@@ -31,7 +32,7 @@ export default function Cart() {
                 setProducts(res.data);
                 console.log(res.data, products)
                 setExist(true);
-                calculaPreco(res.data);
+                // calculaPreco(res.data);
             })
             .catch((err) => {
                 console.log("Falha ao recuperar os produtos", err);
@@ -42,38 +43,36 @@ export default function Cart() {
         navigate("/search");
     }
 
-    function calculaPreco(products) {
+    if (products.products) {
         tamanho = products.length;
-        products[0].cart.forEach((product) => {
+        products.products[0].cart.forEach((product) => {
             let price = 0;
+            quantity += product.quantity;
             price = product.price * product.quantity;
             priceT += price;
-            setPriceTotal(priceT);
         });
     }
 
 
-    console.log(products, priceTotal);
     if (!exist) {
         return (
             <>
-                <VoidCart search={search} setSearch={(e) => setSearch(e)} isLoading={isLoading} handleSearch={() => handleSearch()} />
+                <VoidCart search={search} setSearch={(e) => setSearch(e)} isLoading={isLoading} name={products.name || ""} handleSearch={() => handleSearch()} />
             </>
         )
     } else {
         return tamanho < 1 ? (
             <>
-                <VoidCart search={search} setSearch={(e) => setSearch(e)} isLoading={isLoading} handleSearch={() => handleSearch()} name={products.name} />
+                <VoidCart search={search} setSearch={(e) => setSearch(e)} isLoading={isLoading} name={products.name || ""} handleSearch={() => handleSearch()} />
             </>
         )
             :
             (
                 <>
-                    <FilledCart search={search} setSearch={(e) => setSearch(e)} isLoading={isLoading} handleSearch={() => handleSearch()} name={products.name} products={products} priceTotal={priceTotal} cartQuantity={cartQuantity} />
+                    <FilledCart search={search} quantity={quantity} setSearch={(e) => setSearch(e)} isLoading={isLoading} handleSearch={() => handleSearch()} name={products.name} products={products} priceTotal={priceT} cartQuantity={cartQuantity} />
                 </>
             )
     }
-
 }
 
 

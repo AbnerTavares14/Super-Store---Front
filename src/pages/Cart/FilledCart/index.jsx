@@ -23,7 +23,7 @@ import { useState } from "react";
 
 
 export default function FillerCart(props) {
-    const { name, search, setSearch, isLoading, handleSearch, products, priceTotal, cartQuantity } = props;
+    const { name, search, setSearch, isLoading, handleSearch, products, priceTotal, cartQuantity, quantity } = props;
     const [qtd, setQtd] = useState(1);
     const navigate = useNavigate();
     return (
@@ -73,7 +73,7 @@ export default function FillerCart(props) {
                                             <h4>Quantidade:</h4>
                                             <ion-icon onClick={() => setQtd(qtd - 1)} name="remove-circle-outline"></ion-icon>
                                             <Quantity>
-                                                <h5 className="quantity">{qtd}</h5>
+                                                <h5 className="quantity">{product.quantity}</h5>
                                             </Quantity>
                                             <h5 className="price">Preço: {product.price}</h5>
                                             <ion-icon onClick={() => setQtd(qtd + 1)} name="add-circle-outline"></ion-icon>
@@ -89,7 +89,7 @@ export default function FillerCart(props) {
                     <h1>Resumo da compra</h1>
                     <InfoSummary>
                         <span>
-                            <h2>Subtotal({cartQuantity} item(s))</h2>
+                            <h2>Subtotal({quantity} item(s))</h2>
                             <h3>R$ {priceTotal.toFixed(2)}</h3>
                         </span>
                         <span>
