@@ -8,11 +8,10 @@ import {
 } from "../../components/Form";
 
 import { ThreeDots } from "react-loader-spinner";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LogoContainer from "../../components/Form/LogoContainer";
 import Footer from "../../components/Form/Footer";
-import styled from "styled-components";
 import Logo from "../../assets/img/Logo.png"
 import axios from "axios";
 

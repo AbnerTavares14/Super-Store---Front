@@ -47,7 +47,7 @@ export default function SingleProduct() {
           setNotFound(true);
         }
       });
-  }, []);
+  }, [productId]);
 
   function addToCart() {
     //verificação p caso o carrinho esteja vazio
@@ -67,7 +67,7 @@ export default function SingleProduct() {
     setIsLoading(true);
     api
       .postAddToCart({ ...product, quantity: itemQuantity }, {
-        headers: { Authorization: `Bearer ${auth.token}` },
+        headers: { Authorization: `Bearer ${auth}` },
       })
       .then(() => {
         setIsLoading(false);
