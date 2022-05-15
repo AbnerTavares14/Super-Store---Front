@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import api from "../../services/api";
-import CartContext from "../../context/cartContext.js";
+import CartContext from "../../context/CartContext.js";
 import FilledCart from "./FilledCart"
 import VoidCart from "./VoidCart/index.jsx";
 
