@@ -20,7 +20,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { ThreeDots } from "react-loader-spinner";
 import Footer from "../../components/Footer";
-import CartContext from "../../context/cartContext"
+import CartContext from "../../context/CartContext"
 
 export default function SingleProduct() {
   const [product, setProduct] = useState({});

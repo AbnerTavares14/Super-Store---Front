@@ -6,6 +6,7 @@ import CartContext from "../../context/cartContext.js";
 import FilledCart from "./FilledCart"
 import VoidCart from "./VoidCart/index.jsx";
 
+
 export default function Cart() {
     const { cartQuantity, setCartQuantity } = useContext(CartContext);
     const { auth } = useAuth();
