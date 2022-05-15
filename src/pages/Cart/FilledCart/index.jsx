@@ -22,10 +22,12 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 
-export default function FillerCart(props) {
+export default function FilledCart(props) {
     const { name, search, setSearch, isLoading, handleSearch, products, priceTotal, cartQuantity, quantity } = props;
     const [qtd, setQtd] = useState(1);
     const navigate = useNavigate();
+
+    console.log(products)
     return (
         <>
             <Container>
@@ -54,14 +56,14 @@ export default function FillerCart(props) {
                         </form>
                     </SearchBar>
                     <UserEnvironment>
-                        <h1>{products.name}</h1>
+                        <h1>{name}</h1>
                     </UserEnvironment>
                 </UpperBar>
             </Container>
             <Body>
                 <ContainerCart>
                     <h1>Meu carrinho</h1>
-                    {products.products[0].cart.map((product) => {
+                    {products.cart.map((product) => {
                         return (
                             <MyCart>
                                 <ContainerItem>

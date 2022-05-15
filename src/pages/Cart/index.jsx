@@ -43,14 +43,24 @@ export default function Cart() {
         navigate("/search");
     }
 
-    if (products.products) {
+    if (exist) {
         tamanho = products.length;
-        products.products[0].cart.forEach((product) => {
-            let price = 0;
-            quantity += product.quantity;
-            price = product.price * product.quantity;
-            priceT += price;
-        });
+        if (products.cart) {
+
+            products.cart.forEach((product) => {
+                let price = 0;
+                quantity += product.quantity;
+                price = product.price * product.quantity;
+                priceT += price;
+            });
+        } else {
+            products[0].cart.forEach((product) => {
+                let price = 0;
+                quantity += product.quantity;
+                price = product.price * product.quantity;
+                priceT += price;
+            })
+        }
     }
 
 
@@ -61,7 +71,7 @@ export default function Cart() {
             </>
         )
     } else {
-        return tamanho < 1 ? (
+        return tamanho < 1 || products.hasOwnProperty("cart") ? (
             <>
                 <VoidCart search={search} setSearch={(e) => setSearch(e)} isLoading={isLoading} name={products.name || ""} handleSearch={() => handleSearch()} />
             </>
@@ -69,7 +79,7 @@ export default function Cart() {
             :
             (
                 <>
-                    <FilledCart search={search} quantity={quantity} setSearch={(e) => setSearch(e)} isLoading={isLoading} handleSearch={() => handleSearch()} name={products.name} products={products} priceTotal={priceT} cartQuantity={cartQuantity} />
+                    <FilledCart search={search} quantity={quantity} setSearch={(e) => setSearch(e)} isLoading={isLoading} handleSearch={() => handleSearch()} name={products.name} products={products.hasOwnProperty('cart') ? products : products[0]} priceTotal={priceT} cartQuantity={cartQuantity} />
                 </>
             )
     }
