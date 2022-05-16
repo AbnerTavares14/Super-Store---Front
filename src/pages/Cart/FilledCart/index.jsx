@@ -23,7 +23,6 @@ import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Button from "../../../components/Form/Button";
-import api from "../../../services/api";
 
 
 export default function FilledCart(props) {
