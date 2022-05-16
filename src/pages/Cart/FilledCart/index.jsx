@@ -21,10 +21,11 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Button from "../../../components/Form/Button";
+import api from "../../../services/api";
 
 
 export default function FilledCart(props) {
-    const { name, search, setSearch, isLoading, handleSearch, products, priceTotal, cartQuantity, quantity, qtd, setQtd } = props;
+    let { name, search, setSearch, isLoading, handleSearch, products, priceTotal, auth, setCartQuantity, quantity, qtd, setQtd } = props;
     const navigate = useNavigate();
     const [priceT, setPriceTotal] = useState(priceTotal);
 
@@ -36,6 +37,30 @@ export default function FilledCart(props) {
     function decreaseQuantity(price) {
         setQtd(qtd - 1);
         setPriceTotal((priceTotal - price));
+    }
+
+    function finalizeBuy() {
+        const config = {
+            headers: {
+                Authorization: `Bearer ${auth}`
+            }
+        }
+        api
+            .deleteCart(config)
+            .then(() => {
+                setCartQuantity(0);
+                navigate("/receipt", {
+                    state: {
+                        userName: name,
+                        products,
+                        frete: 20,
+                        total_price: priceTotal
+                    }
+                })
+            })
+            .catch((err) => {
+                console.log("Falha ao comprar o(s) produto(s)!", err);
+            });
     }
 
     console.log(products)
@@ -108,8 +133,8 @@ export default function FilledCart(props) {
                     <h1>Resumo da compra</h1>
                     <InfoSummary>
                         <span>
-                            <h2>Subtotal({quantity} item(s))</h2>
-                            <h3>R$ {priceT}</h3>
+                            <h2>Subtotal(item(s))</h2>
+                            <h3>R$ {priceT.toFixed(2)}</h3>
                         </span>
                         <span>
                             <h2>Frete</h2>
@@ -117,9 +142,9 @@ export default function FilledCart(props) {
                         </span>
                         <span>
                             <h2>Valor total</h2>
-                            <h3>R$ {(priceT + 20)} em 1x</h3>
+                            <h3>R$ {(priceT + 20).toFixed(2)} em 1x</h3>
                         </span>
-                        <FinalizePurchase>Finalizar compra</FinalizePurchase>
+                        <FinalizePurchase onClick={() => finalizeBuy()}>Finalizar compra</FinalizePurchase>
                     </InfoSummary>
                 </PurchaseSummary>
             </Body>

@@ -76,6 +76,24 @@ function getProductOfCart(token) {
   return promise;
 }
 
+function setBuy(body, token) {
+  console.log(body);
+  const promise = axios.post(`${BASE_URL}/purchases`, body, token);
+
+  return promise;
+}
+
+function getPurchase(token) {
+  const promise = axios.post(`${BASE_URL}/purchases`, token);
+
+  return promise;
+}
+
+function deleteCart(token) {
+  const promise = axios.delete(`${BASE_URL}/cart`, token);
+
+  return promise;
+}
 
 const api = {
   postSignIn,
@@ -89,7 +107,10 @@ const api = {
   getFashion,
   getBooks,
   getHome,
-  getProductOfCart
+  getProductOfCart,
+  setBuy,
+  getPurchase,
+  deleteCart
 };
 
 export default api;
