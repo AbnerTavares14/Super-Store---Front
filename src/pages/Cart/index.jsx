@@ -9,12 +9,12 @@ import VoidCart from "./VoidCart/index.jsx";
 
 export default function Cart() {
     const { cartQuantity, setCartQuantity } = useContext(CartContext);
-    const { auth } = useAuth();
+    const { auth, name } = useAuth();
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [exist, setExist] = useState(false);
     const [search, setSearch] = useState({ text: "", });
-    // const [priceTotal, setPriceTotal] = useState(0);
+    const [qtd, setQtd] = useState(0);
     const navigate = useNavigate();
     let tamanho = 0;
     let priceT = 0;
@@ -31,9 +31,8 @@ export default function Cart() {
             .getProductOfCart(config)
             .then((res) => {
                 setProducts(res.data);
-                console.log(res.data, products)
+                console.log(res.data)
                 setExist(true);
-                // calculaPreco(res.data);
             })
             .catch((err) => {
                 console.log("Falha ao recuperar os produtos", err);
@@ -44,43 +43,37 @@ export default function Cart() {
         navigate("/search");
     }
 
-    if (exist) {
-        tamanho = products.length;
-        if (products.cart) {
 
-            products.cart.forEach((product) => {
-                let price = 0;
-                quantity += product.quantity;
-                price = product.price * product.quantity;
-                priceT += price;
-            });
-        } else {
-            products[0].cart.forEach((product) => {
-                let price = 0;
-                quantity += product.quantity;
-                price = product.price * product.quantity;
-                priceT += price;
-            })
-        }
+
+    console.log(products)
+    if (exist && products) {
+        tamanho = products.length;
+        products.forEach((product) => {
+            let price = 0;
+            quantity += product.quantity;
+            price = product.product.price * product.product.quantity;
+            priceT += price;
+        });
     }
+
 
 
     if (!exist) {
         return (
             <>
-                <VoidCart search={search} setSearch={(e) => setSearch(e)} isLoading={isLoading} name={products.name || ""} handleSearch={() => handleSearch()} />
+                <VoidCart search={search} setSearch={(e) => setSearch(e)} isLoading={isLoading} name={name || ""} handleSearch={() => handleSearch()} />
             </>
         )
     } else {
-        return tamanho < 1 || products.hasOwnProperty("cart") ? (
+        return tamanho < 1 ? (
             <>
-                <VoidCart search={search} setSearch={(e) => setSearch(e)} isLoading={isLoading} name={products.name || ""} handleSearch={() => handleSearch()} />
+                <VoidCart search={search} setSearch={(e) => setSearch(e)} isLoading={isLoading} name={name || ""} handleSearch={() => handleSearch()} />
             </>
         )
             :
             (
                 <>
-                    <FilledCart search={search} quantity={quantity} setSearch={(e) => setSearch(e)} isLoading={isLoading} handleSearch={() => handleSearch()} name={products.name} products={products.hasOwnProperty('cart') ? products : products[0]} priceTotal={priceT} cartQuantity={cartQuantity} />
+                    <FilledCart search={search} qtd={qtd} setQtd={(number) => setQtd(number)} quantity={quantity} setSearch={(e) => setSearch(e)} isLoading={isLoading} handleSearch={() => handleSearch()} name={name} products={products} priceTotal={priceT} cartQuantity={cartQuantity} />
                 </>
             )
     }
