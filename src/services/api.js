@@ -76,8 +76,31 @@ function getProductOfCart(token) {
   return promise;
 }
 
+
+function setBuy(body, token) {
+  console.log(body);
+  const promise = axios.post(`${BASE_URL}/purchases`, body, token);
+}
+  
+
+
 function deleteItemFromCart(productId, token) {
   const promise = axios.delete(`${BASE_URL}/delete-cart-item/${productId}`, token);
+
+
+  return promise;
+}
+
+
+function getPurchase(token) {
+  const promise = axios.post(`${BASE_URL}/purchases`, token);
+
+  return promise;
+}
+
+
+function deleteCart(token) {
+  const promise = axios.delete(`${BASE_URL}/cart`, token);
 
   return promise;
 }
@@ -96,6 +119,9 @@ const api = {
   getBooks,
   getHome,
   getProductOfCart,
+  setBuy,
+  getPurchase,
+  deleteCart,
   deleteItemFromCart
 };
 

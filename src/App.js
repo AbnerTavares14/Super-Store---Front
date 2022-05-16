@@ -1,7 +1,9 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { GlobalStyle } from "./styles/style";
-import { MainPage, Login, SignUp, SingleProduct, Cart, Search} from "./pages";
+
+import { MainPage, Login, SignUp, SingleProduct, Cart, Search, Receipt } from "./pages";
+
 import AuthContext from "./context/AuthContext";
 import CartContext from "./context/CartContext";
 import Games from "./pages/Categorys/Games";
@@ -37,6 +39,7 @@ export default function App() {
                             <Route path="/books" element={<Books />} />
                             <Route path="/fashion" element={<Fashion />} />
                             <Route path="/home" element={<Home />} />
+                            <Route path="/receipt" element={<Receipt />} />
                             <Route path="/search" element={<Search />} />
                         </Routes>
                     </AuthContext.Provider>

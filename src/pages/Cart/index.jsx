@@ -56,6 +56,7 @@ export default function Cart() {
         });
     }
 
+    console.log(quantity)
 
 
     if (!exist) {
@@ -73,7 +74,7 @@ export default function Cart() {
             :
             (
                 <>
-                    <FilledCart search={search} qtd={qtd} setQtd={(number) => setQtd(number)} quantity={quantity} setSearch={(e) => setSearch(e)} isLoading={isLoading} handleSearch={() => handleSearch()} name={name} products={products} priceTotal={priceT} cartQuantity={cartQuantity} />
+                    <FilledCart search={search} auth={auth} qtd={qtd} setQtd={(number) => setQtd(number)} quantity={quantity} setSearch={(e) => setSearch(e)} isLoading={isLoading} handleSearch={() => handleSearch()} name={name} products={products} priceTotal={priceT} setCartQuantity={setCartQuantity} />
                 </>
             )
     }

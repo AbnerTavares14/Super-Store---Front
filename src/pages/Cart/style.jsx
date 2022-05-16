@@ -105,6 +105,7 @@ const PurchaseSummary = styled.aside`
     h1{
         font-family: "Lexend Deca", sans-serif;
         font-size: 20px;
+        margin-bottom: 3px;
         color: #036AA3;
     }
 `
