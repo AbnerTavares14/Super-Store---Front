@@ -2,7 +2,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 dotenv.config();
 
-const BASE_URL = "https://projeto--super-store.herokuapp.com"
+const BASE_URL = "https://projeto--super-store.herokuapp.com";
 
 function postSignIn(body) {
   const promise = axios.post(`${BASE_URL}/sign-in`, body);
@@ -76,6 +76,12 @@ function getProductOfCart(token) {
   return promise;
 }
 
+function deleteItemFromCart(productId, token) {
+  const promise = axios.delete(`${BASE_URL}/delete-cart-item/${productId}`, token);
+
+  return promise;
+}
+
 
 const api = {
   postSignIn,
@@ -89,7 +95,8 @@ const api = {
   getFashion,
   getBooks,
   getHome,
-  getProductOfCart
+  getProductOfCart,
+  deleteItemFromCart
 };
 
 export default api;

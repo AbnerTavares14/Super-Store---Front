@@ -18,6 +18,8 @@ import {
     FinalizePurchase,
     Item
 } from "../style";
+import useAuth from "../../../hooks/useAuth";
+import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Button from "../../../components/Form/Button";
@@ -27,6 +29,7 @@ export default function FilledCart(props) {
     const { name, search, setSearch, isLoading, handleSearch, products, priceTotal, cartQuantity, quantity, qtd, setQtd } = props;
     const navigate = useNavigate();
     const [priceT, setPriceTotal] = useState(priceTotal);
+    const { auth } = useAuth();
 
     function increaseQuantity(price) {
         setQtd(qtd + 1);
@@ -36,6 +39,14 @@ export default function FilledCart(props) {
     function decreaseQuantity(price) {
         setQtd(qtd - 1);
         setPriceTotal((priceTotal - price));
+    }
+
+    function removeItem(productId) {
+        api
+          .deleteItemFromCart(productId, {
+            headers: { Authorization: `Bearer ${auth}` },
+          })
+          .then(window.location.reload());
     }
 
     console.log(products)
@@ -98,7 +109,7 @@ export default function FilledCart(props) {
                                             <ion-icon onClick={() => increaseQuantity(product.product.price)} name="add-circle-outline"></ion-icon>
                                         </span>
                                     </Item>
-                                    <ion-icon name="trash-outline"></ion-icon>
+                                    <ion-icon name="trash-outline" onClick={()=> removeItem(product._id)}></ion-icon>
                                 </ContainerItem>
                             </MyCart>
                         )
