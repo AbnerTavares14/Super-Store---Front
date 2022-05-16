@@ -30,7 +30,7 @@ export default function Header() {
     text: "",
   });
 
-  const { auth, setAuth } = useAuth();
+  const { auth, name } = useAuth();
 
   function handleSearch() {
     navigate("/search");
@@ -63,8 +63,8 @@ export default function Header() {
           </form>
         </SearchBar>
         <UserEnvironment>
-          {auth?.name ? (
-            `Olá, ${auth.name}`
+          {name ? (
+            `Olá, ${name}`
           ) : (
             <Button onClick={() => navigate("/login")} variant="contained">
               Entrar

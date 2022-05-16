@@ -46,7 +46,13 @@ export default function VoidCart(props) {
                         </form>
                     </SearchBar>
                     <UserEnvironment>
-                        <h1>{name}</h1>
+                        {name ? (
+                            `Olá, ${name}`
+                        ) : (
+                            <Button onClick={() => navigate("/login")} variant="contained">
+                                Entrar
+                            </Button>
+                        )}
                     </UserEnvironment>
                 </UpperBar>
             </Container>

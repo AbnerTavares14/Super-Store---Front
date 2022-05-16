@@ -16,13 +16,14 @@ import Home from "./pages/Categorys/Home";
 export default function App() {
     const [auth, login] = useState(null);
     const [cartQuantity, setCartQuantity] = useState(0);
+    const [name, setName] = useState(null);
 
     return (
         <>
             <GlobalStyle />
             <BrowserRouter>
                 <CartContext.Provider value={{ cartQuantity, setCartQuantity }}>
-                    <AuthContext.Provider value={{ auth, login }}>
+                    <AuthContext.Provider value={{ auth, login, name, setName }}>
                         <Routes>
                             <Route path="/" element={<MainPage />} />
                             <Route path="/login" element={<Login />} />
