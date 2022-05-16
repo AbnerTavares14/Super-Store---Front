@@ -18,7 +18,6 @@ import {
     FinalizePurchase,
     Item
 } from "../style";
-import useAuth from "../../../hooks/useAuth";
 import api from "../../../services/api";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -29,7 +28,6 @@ export default function FilledCart(props) {
     let { name, search, setSearch, isLoading, handleSearch, products, priceTotal, auth, setCartQuantity, quantity, qtd, setQtd } = props;
     const navigate = useNavigate();
     const [priceT, setPriceTotal] = useState(priceTotal);
-    const { auth } = useAuth();
 
     function increaseQuantity(price) {
         setQtd(qtd + 1);
